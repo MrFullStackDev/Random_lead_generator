@@ -138,7 +138,7 @@ export default function App() {
                 <input
                   id="customEmail"
                   type="email"
-                  placeholder="e.g. testclapingo@gmail.com"
+                  placeholder="e.g. rahul@gmail.com"
                   value={customEmail}
                   onChange={e => setCustomEmail(e.target.value)}
                   aria-label="Custom email base"
