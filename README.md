@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
+# Dummy Leads Generator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind CSS.
 
-Currently, two official plugins are available:
+![Dummy Leads Generator](https://i.imgur.com/your-screenshot-url.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- 🎯 Generate random lead data with realistic information
+- 📊 Customizable number of leads to generate
+- 📥 Download leads as CSV file
+- 🎨 Modern, responsive UI with elegant design
+- ⚡ Built with React and TypeScript for type safety
+- 🎭 Uses Faker.js for realistic data generation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Data Fields
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Each generated lead includes:
+- First Name
+- Last Name
+- Phone (US format)
+- LinkedIn URL
+- Email
+- Photo URL
+- Job Title
+- Company Name
+- Company Domain
+- City
+- State
+- Country
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- Faker.js
+- Lucide Icons
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16.x or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/MrFullStackDev/Random_lead_generator.git
+cd Random_lead_generator
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. Open [http://localhost:5173](http://localhost:5173) in your browser
+
+## Usage
+
+1. Enter the number of leads you want to generate
+2. Click "Generate Leads" to create random lead data
+3. Review the generated data in the table
+4. Click "Download CSV" to save the data as a CSV file
+
+## Building for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+## License
+
+MIT License - feel free to use this project for your testing needs!
+
+## Author
+
+Rahul Kumar
+
+---
+
+Made with ❤️ for testing purposes
