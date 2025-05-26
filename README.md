@@ -2,8 +2,6 @@
 
 A modern web application for generating dummy lead data for testing purposes. Built with React, TypeScript, and Tailwind CSS.
 
-![Dummy Leads Generator](https://i.imgur.com/your-screenshot-url.png)
-
 ## Features
 
 - 🎯 Generate random lead data with realistic information
