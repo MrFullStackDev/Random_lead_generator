@@ -22,18 +22,23 @@ export default function App() {
   const [count, setCount] = useState<number>(10)
   const [leads, setLeads] = useState<Lead[]>([])
   const [error, setError] = useState<string>('')
+  const [customEmail, setCustomEmail] = useState<string>('')
 
   const generateLeads = useCallback((n: number): Lead[] =>
-    Array.from({ length: n }).map(() => {
+    Array.from({ length: n }).map((_, i) => {
       const firstName = faker.person.firstName()
       const lastName = faker.person.lastName()
-      
+      let email = `${firstName.toLowerCase()}@rahulksm.testinator.com`
+      if (customEmail && customEmail.includes('@')) {
+        const [user, domain] = customEmail.split('@')
+        email = `${user}+test${i + 1}@${domain}`
+      }
       return {
         firstName,
         lastName,
         phone: faker.phone.number({ style: 'national' }),
         linkedinUrl: 'https://in.linkedin.com/in/mrfullstackdev',
-        email: `${firstName.toLowerCase()}@rahulksm.testinator.com`,
+        email,
         photoUrl: 'https://ui-avatars.com/api/?background=random&size=200',
         jobTitle: faker.person.jobTitle(),
         companyName: faker.company.name().split(' ')[0],
@@ -42,7 +47,7 @@ export default function App() {
         state: faker.location.state(),
         country: faker.location.country(),
       }
-    }), [])
+    }), [customEmail])
 
   const handleGenerate = () => {
     try {
@@ -111,22 +116,38 @@ export default function App() {
 
         <div className="bg-white shadow-xl rounded-xl overflow-hidden border border-slate-200">
           <div className="flex flex-col sm:flex-row items-center justify-between p-6 border-b border-slate-200 space-y-4 sm:space-y-0 bg-gradient-to-r from-slate-50 to-white">
-            <div className="flex items-center space-x-3">
-              <label htmlFor="count" className="font-medium text-slate-700">
-                Number of Leads:
-              </label>
-              <input
-                id="count"
-                type="number"
-                min={1}
-                value={count}
-                onChange={handleCountChange}
-                aria-label="Number of leads to generate"
-                className="w-20 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
-              />
+            <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
+              <div className="flex items-center space-x-3">
+                <label htmlFor="count" className="font-medium text-slate-700">
+                  Number of Leads:
+                </label>
+                <input
+                  id="count"
+                  type="number"
+                  min={1}
+                  value={count}
+                  onChange={handleCountChange}
+                  aria-label="Number of leads to generate"
+                  className="w-20 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
+                />
+              </div>
+              <div className="flex items-center space-x-3">
+                <label htmlFor="customEmail" className="font-medium text-slate-700">
+                  Custom Email Base:
+                </label>
+                <input
+                  id="customEmail"
+                  type="email"
+                  placeholder="e.g. testclapingo@gmail.com"
+                  value={customEmail}
+                  onChange={e => setCustomEmail(e.target.value)}
+                  aria-label="Custom email base"
+                  className="w-56 px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white"
+                />
+              </div>
             </div>
 
-            <div className="flex space-x-3">
+            <div className="flex space-x-3 mt-2 sm:mt-0">
               <button
                 onClick={handleGenerate}
                 className="flex items-center space-x-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 font-medium text-sm shadow-sm hover:shadow-md active:scale-95"
