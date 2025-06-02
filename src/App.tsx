@@ -28,10 +28,10 @@ export default function App() {
     Array.from({ length: n }).map((_, i) => {
       const firstName = faker.person.firstName()
       const lastName = faker.person.lastName()
-      let email = `${firstName.toLowerCase()}@rahulksm.testinator.com`
+      let email = `${firstName.toLowerCase()}${faker.number.int({ min: 100, max: 999 })}@rahulksm.testinator.com`
       if (customEmail && customEmail.includes('@')) {
         const [user, domain] = customEmail.split('@')
-        email = `${user}+test${i + 1}@${domain}`
+        email = `${user}+${faker.string.alphanumeric(8)}@${domain}`
       }
       return {
         firstName,
