@@ -25,7 +25,7 @@ export default function App() {
   const [customEmail, setCustomEmail] = useState<string>('')
 
   const generateLeads = useCallback((n: number): Lead[] =>
-    Array.from({ length: n }).map((_, i) => {
+    Array.from({ length: n }).map(() => {
       const firstName = faker.person.firstName()
       const lastName = faker.person.lastName()
       let email = `${firstName.toLowerCase()}${faker.number.int({ min: 100, max: 999 })}@rahulksm.testinator.com`
