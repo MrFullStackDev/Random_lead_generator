@@ -1,0 +1,47 @@
+name: PRLens Review
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  prlens:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install PRLens
+        run: npm install -g prlens
+
+      - name: Run PRLens on PR
+        id: review
+        env:
+          PRLENS_LLM_PROVIDER: anthropic
+          PRLENS_LLM_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PRLENS_LLM_MODEL: claude-3-5-sonnet-20241022
+          PRLENS_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          prlens pr ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} > review.txt 2>&1 || true
+          cat review.txt
+
+      - name: Post review as PR comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const review = fs.readFileSync('review.txt', 'utf8')
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🔍 PRLens Review\n\`\`\`\n${review}\n\`\`\``
+            })
