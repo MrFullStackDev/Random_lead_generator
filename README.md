@@ -5,7 +5,8 @@ A modern web application for generating dummy lead data for testing purposes. Bu
 ## Features
 
 - 🎯 Generate random lead data with realistic information
-- 📊 Customizable number of leads to generate
+- 📊 Customizable number of leads to generate (up to 5,000 at a time)
+- 📧 Custom email base support (e.g. `rahul@gmail.com` → `rahul+abc123@gmail.com`)
 - 📥 Download leads as CSV file
 - 🎨 Modern, responsive UI with elegant design
 - ⚡ Built with React and TypeScript for type safety
@@ -69,10 +70,11 @@ yarn dev
 
 ## Usage
 
-1. Enter the number of leads you want to generate
-2. Click "Generate Leads" to create random lead data
-3. Review the generated data in the table
-4. Click "Download CSV" to save the data as a CSV file
+1. Enter the number of leads you want to generate (max: 5,000)
+2. Optionally enter a custom email base (e.g. `rahul@gmail.com`) to generate leads with tagged emails like `rahul+abc123@gmail.com`
+3. Click "Generate Leads" to create random lead data
+4. Review the generated data in the table
+5. Click "Download CSV" to save the data as a CSV file
 
 ## Building for Production
 
