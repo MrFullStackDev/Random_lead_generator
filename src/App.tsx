@@ -77,7 +77,7 @@ export default function App() {
           firstName,
           lastName,
           phone: faker.phone.number({ style: "national" }),
-          linkedinUrl: `https://linkedin.com/in/${faker.internet.userName().toLowerCase()}`,
+          linkedinUrl: `https://linkedin.com/in/${faker.internet.username().toLowerCase()}`,
           email,
           photoUrl: `https://ui-avatars.com/api/?background=random&size=200&name=${encodeURIComponent(firstName)}+${encodeURIComponent(lastName)}`,
           jobTitle: faker.person.jobTitle(),
